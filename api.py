@@ -1,5 +1,7 @@
 import justpy as jp
 import definition
+import json
+
 
 class API:
     """Handles requests at /api?w=word
@@ -11,7 +13,12 @@ class API:
 
         defined = definition.Definition(word).get()
 
-        wp.html = defined  # with div the source code is a full html web. With this the source code is just vad defined
+        response = {
+            "word": word,
+            "definition": defined
+        }
+
+        wp.html = json.dumps(response)  # json it's a string that can be read by machines
         return wp
 
 
