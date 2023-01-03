@@ -1,5 +1,5 @@
 import justpy as jp
-
+import definition
 
 class API:
     """Handles requests at /api?w=word
@@ -8,8 +8,12 @@ class API:
     def serve(cls, req):
         wp = jp.WebPage()
         word = req.query_params.get('w')  # returns the value of w
-        jp.Div(a=wp, text=word.title())
+
+        defined = definition.Definition(word).get()
+
+        wp.html = defined  # with div the source code is a full html web. With this the source code is just vad defined
         return wp
+
 
 jp.Route("/api", API.serve)
 jp.justpy()
