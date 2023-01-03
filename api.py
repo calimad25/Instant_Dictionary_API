@@ -22,5 +22,4 @@ class API:
         return wp
 
 
-jp.Route("/api", API.serve)
-jp.justpy()
+
